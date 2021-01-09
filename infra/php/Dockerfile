@@ -12,6 +12,10 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/* && \
   docker-php-ext-install intl pdo_mysql zip bcmath
 
+#nodebrewのインストール
+RUN curl -L git.io/nodebrew | perl - setup
+RUN echo 'export PATH="$HOME/.nodebrew/current/bin:$PATH"' >> ~/.bashrc && . ~/.bashrc
+
 COPY ./php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work
